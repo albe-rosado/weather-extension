@@ -1,0 +1,10 @@
+#status {
+    color: #456173;
+    overflow: auto;
+    min-width: 100px;
+    max-width: 400px;
+}
+
+#header {
+    color: #263849;
+}

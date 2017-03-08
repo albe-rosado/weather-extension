@@ -11,6 +11,7 @@
   },
   "permissions": [
     "http://api.openweathermap.org/",
-    "geolocation"
+    "geolocation",
+    "notifications"
 ]
 }
