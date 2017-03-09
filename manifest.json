@@ -12,6 +12,12 @@
   "permissions": [
     "http://api.openweathermap.org/",
     "geolocation",
-    "notifications"
-]
+    "notifications",
+    "background",
+    "storage"
+],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  }
 }
