@@ -29,13 +29,21 @@ chrome.storage.sync.get(["main", "data"], function(request){
     }
 });
 
+chrome.storage.onChanged.addListener(function(change) {
+    // Fire a notification if there is any weather anomalies
+    if (checkWeather(change.main.newValue, change.data.newValue)){
+        showNotification(change.main.newValue, change.data.newValue);
+    }
 
+});
 
 
 // Retrieve weather data from OpenWeather API
 function getWeatherData(lat, long, callback, errorCallback) {
 
-    var searchUrl = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=8f406ae37d8e9c9671262ab1d496fd2a';
+    var searchUrl = 'http://api.openweathermap.org/data/2.5/weather?q=Ormoc&appid=8f406ae37d8e9c9671262ab1d496fd2a'
+
+    // var searchUrl = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=8f406ae37d8e9c9671262ab1d496fd2a';
     var x = new XMLHttpRequest();
     x.open('GET', searchUrl);
 
@@ -65,7 +73,7 @@ function checkWeather(weatherMain, weatherData) {
     var dangerKeys = ['hurricane', 'tornado', 'twister', 'tsunami', 'earthquake', 
                         'tremor', 'flood', 'storm', 'crest', 'extreme', 'fire', 'avalanche',
                         'typhoon', 'blizzard', 'sleet', 'mudslice', 'mud', 'outage', 'warning',
-                        'emergency', 'clear'];
+                        'emergency', 'rain', 'snow'];
     var isDanger = false;
 
     var dataKeys = weatherMain.split(' ').concat(weatherData.split(' '));

@@ -1,8 +1,5 @@
 
 
-
-
-
 // Displays weather status on the popup
 function renderStatus(main, desc) {
     document.getElementById('header').textContent = main;
